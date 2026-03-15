@@ -1,0 +1,109 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-background: #0a0c08;
+  --color-foreground: #e8e4d8;
+  --font-sans: var(--font-inter);
+}
+
+:root {
+  --background: #080808;
+  --foreground: #e8e4d8;
+  --gold: #c9a347;
+  --gold-dim: #8a6e2e;
+  --gold-glow: rgb(201 163 71 / 0.15);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-inter), Arial, sans-serif;
+}
+
+/* Subtle diagonal line pattern — tactical/military feel */
+.bg-tactical {
+  background-image:
+    repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 40px,
+      rgb(201 163 71 / 0.018) 40px,
+      rgb(201 163 71 / 0.018) 41px
+    );
+}
+
+/* Top-center gold radial glow */
+.bg-gold-glow {
+  background: radial-gradient(ellipse 70% 50% at 50% 0%, rgb(201 163 71 / 0.12) 0%, transparent 70%);
+}
+
+/* Gradient text — gold */
+.text-gold-gradient {
+  background: linear-gradient(to right, #e8c46a, #c9a347, #a07c2a);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Countdown card */
+.countdown-card {
+  background: rgb(10 12 8 / 0.9);
+  border: 1px solid rgb(201 163 71 / 0.25);
+  backdrop-filter: blur(8px);
+  transition: border-color 0.2s;
+}
+
+.countdown-card:hover {
+  border-color: rgb(201 163 71 / 0.5);
+}
+
+/* Horizontal rule with gold fade */
+.divider-gold {
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgb(201 163 71 / 0.4), transparent);
+}
+
+/* Shimmer animation */
+@keyframes sheen {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* Logo pulse — very subtle */
+@keyframes breathe {
+  0%, 100% { filter: drop-shadow(0 0 12px rgb(201 163 71 / 0.25)); }
+  50%       { filter: drop-shadow(0 0 28px rgb(201 163 71 / 0.5)); }
+}
+
+.logo-breathe {
+  animation: breathe 4s ease-in-out infinite;
+}
+
+/* Float */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-6px); }
+}
+
+.animate-float {
+  animation: float 5s ease-in-out infinite;
+}
+
+/* Scanline overlay — subtle military HUD feel */
+.scanlines::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgb(0 0 0 / 0.03) 2px,
+    rgb(0 0 0 / 0.03) 4px
+  );
+  pointer-events: none;
+}
