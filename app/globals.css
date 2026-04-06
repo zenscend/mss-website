@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-background: #0a0c08;
+  --color-background: #080808;
   --color-foreground: #e8e4d8;
   --font-sans: var(--font-inter);
 }
@@ -9,39 +9,37 @@
 :root {
   --background: #080808;
   --foreground: #e8e4d8;
-  --gold: #c9a347;
-  --gold-dim: #8a6e2e;
-  --gold-glow: rgb(201 163 71 / 0.15);
 }
 
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-inter), Arial, sans-serif;
+  scroll-behavior: smooth;
 }
 
-/* Subtle diagonal line pattern — tactical/military feel */
+/* ---------- backgrounds ---------- */
 .bg-tactical {
-  background-image:
-    repeating-linear-gradient(
-      -45deg,
-      transparent,
-      transparent 40px,
-      rgb(201 163 71 / 0.018) 40px,
-      rgb(201 163 71 / 0.018) 41px
-    );
+  background-image: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 40px,
+    rgb(201 163 71 / 0.018) 40px,
+    rgb(201 163 71 / 0.018) 41px
+  );
 }
 
-/* Top-center gold radial glow */
 .bg-gold-glow {
   background: radial-gradient(ellipse 70% 50% at 50% 0%, rgb(201 163 71 / 0.12) 0%, transparent 70%);
 }
 
-/* Gradient text — gold */
+.bg-gold-glow-center {
+  background: radial-gradient(ellipse 60% 50% at 50% 50%, rgb(201 163 71 / 0.07) 0%, transparent 70%);
+}
+
+/* ---------- typography ---------- */
 .text-gold-gradient {
   background: linear-gradient(to right, #e8c46a, #c9a347, #a07c2a);
   -webkit-background-clip: text;
@@ -49,51 +47,78 @@ body {
   background-clip: text;
 }
 
-/* Countdown card */
+/* ---------- cards ---------- */
 .countdown-card {
-  background: rgb(10 12 8 / 0.9);
+  background: rgb(10 10 10 / 0.9);
   border: 1px solid rgb(201 163 71 / 0.25);
   backdrop-filter: blur(8px);
   transition: border-color 0.2s;
 }
+.countdown-card:hover { border-color: rgb(201 163 71 / 0.5); }
 
-.countdown-card:hover {
-  border-color: rgb(201 163 71 / 0.5);
+.service-card {
+  background: rgb(12 12 12 / 0.9);
+  border: 1px solid rgb(201 163 71 / 0.12);
+  transition: border-color 0.25s, transform 0.25s;
+}
+.service-card:hover {
+  border-color: rgb(201 163 71 / 0.35);
+  transform: translateY(-2px);
 }
 
-/* Horizontal rule with gold fade */
+/* ---------- dividers ---------- */
 .divider-gold {
   height: 1px;
   background: linear-gradient(to right, transparent, rgb(201 163 71 / 0.4), transparent);
 }
 
-/* Shimmer animation */
-@keyframes sheen {
-  0%   { transform: translateX(-100%); }
-  100% { transform: translateX(100%); }
+/* ---------- buttons ---------- */
+.btn-gold {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(to right, #e8c46a, #c9a347);
+  color: #080808;
+  font-weight: 600;
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  border-radius: 2px;
+  padding: 0.75rem 2rem;
+  transition: opacity 0.2s;
+}
+.btn-gold:hover { opacity: 0.88; }
+
+.btn-outline {
+  background: transparent;
+  color: rgb(201 163 71 / 0.8);
+  font-weight: 600;
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  border-radius: 2px;
+  padding: 0.75rem 2rem;
+  border: 1px solid rgb(201 163 71 / 0.35);
+  transition: border-color 0.2s, color 0.2s;
+}
+.btn-outline:hover {
+  border-color: rgb(201 163 71 / 0.6);
+  color: #c9a347;
 }
 
-/* Logo pulse — very subtle */
+/* ---------- animations ---------- */
 @keyframes breathe {
   0%, 100% { filter: drop-shadow(0 0 12px rgb(201 163 71 / 0.25)); }
   50%       { filter: drop-shadow(0 0 28px rgb(201 163 71 / 0.5)); }
 }
+.logo-breathe { animation: breathe 4s ease-in-out infinite; }
 
-.logo-breathe {
-  animation: breathe 4s ease-in-out infinite;
-}
-
-/* Float */
 @keyframes float {
   0%, 100% { transform: translateY(0px); }
   50%       { transform: translateY(-6px); }
 }
+.animate-float { animation: float 5s ease-in-out infinite; }
 
-.animate-float {
-  animation: float 5s ease-in-out infinite;
-}
-
-/* Scanline overlay — subtle military HUD feel */
+/* ---------- scanline overlay ---------- */
 .scanlines::after {
   content: '';
   position: absolute;
@@ -107,3 +132,24 @@ body {
   );
   pointer-events: none;
 }
+
+/* ---------- corner accent helper ---------- */
+.corner-accent-tl { position: absolute; top: 0; left: 0;  width: 5rem; height: 5rem; border-top: 1px solid rgb(201 163 71 / 0.2); border-left: 1px solid rgb(201 163 71 / 0.2); }
+.corner-accent-tr { position: absolute; top: 0; right: 0; width: 5rem; height: 5rem; border-top: 1px solid rgb(201 163 71 / 0.2); border-right: 1px solid rgb(201 163 71 / 0.2); }
+.corner-accent-bl { position: absolute; bottom: 0; left: 0;  width: 5rem; height: 5rem; border-bottom: 1px solid rgb(201 163 71 / 0.2); border-left: 1px solid rgb(201 163 71 / 0.2); }
+.corner-accent-br { position: absolute; bottom: 0; right: 0; width: 5rem; height: 5rem; border-bottom: 1px solid rgb(201 163 71 / 0.2); border-right: 1px solid rgb(201 163 71 / 0.2); }
+
+/* ---------- form inputs ---------- */
+.input-gold {
+  width: 100%;
+  background: rgb(15 15 15 / 0.8);
+  border: 1px solid rgb(201 163 71 / 0.2);
+  border-radius: 2px;
+  padding: 0.75rem 1rem;
+  color: #e8e4d8;
+  font-size: 0.875rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.input-gold::placeholder { color: rgb(232 228 216 / 0.25); }
+.input-gold:focus { border-color: rgb(201 163 71 / 0.5); }
